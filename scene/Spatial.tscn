@@ -1,0 +1,480 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scene/KinematicBody.tscn" type="PackedScene" id=1]
+[ext_resource path="res://script/FPS_COUNTER.gd" type="Script" id=2]
+[ext_resource path="res://textures/beton.jpg" type="Texture" id=3]
+[ext_resource path="res://default_env.tres" type="Environment" id=4]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.108398, 0.108398, 0.108398, 1 )
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+albedo_color = Color( 1, 0, 0, 0.329412 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.001, 0.001, 1 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.278431, 0.278431, 0.278431, 1 )
+
+[sub_resource type="BoxShape" id=8]
+
+[sub_resource type="SpatialMaterial" id=9]
+flags_transparent = true
+albedo_color = Color( 0.576471, 0.568627, 0.568627, 0.254902 )
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 4 )
+
+[node name="FPS_COUNTER" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -111.0
+margin_top = 37.0
+margin_right = -73.0
+margin_bottom = 58.0
+rect_scale = Vector2( 2.5, 2.5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="soleil" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.642788, 0.766044, 0, -0.766044, -0.642788, 0, 20, 0 )
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, -6.55671e-08, -2, 0, 1.5, -8.74228e-08, -15.3522, 4, 73.3277 )
+walk_speed = 15
+run_speed = 30
+
+[node name="Camera" parent="Player" index="2"]
+transform = Transform( -0.666667, -4.37114e-08, -2.91409e-08, 2.91409e-08, 9.55343e-16, -0.666667, 5.82819e-08, -0.5, 1.27379e-15, 0, 0, -1.37784 )
+
+[node name="platform" type="StaticBody" parent="."]
+transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="platform"]
+transform = Transform( 6, 0, 0, 0, 1, 0, 0, 0, 6, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="platform"]
+transform = Transform( 6, 0, 0, 0, 1, 0, 0, 0, 6, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Batt B" type="Spatial" parent="."]
+
+[node name="portes" type="StaticBody" parent="Batt B"]
+transform = Transform( 2, 0, 0, 0, 4, 0, 0, 0, 1, -54, 5, 79 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/portes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Batt B/portes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="Batt B/portes"]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 4, -17.2, 0, 16.5 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="Batt B/portes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -40.5 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="MeshInstance5" type="MeshInstance" parent="Batt B/portes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3, 0, -2 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="MeshInstance6" type="MeshInstance" parent="Batt B/portes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3, 0, -12 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="MeshInstance7" type="MeshInstance" parent="Batt B/portes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, 0, -7 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/portes"]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -6.38359, 29.5765, 0 )
+shape = SubResource( 6 )
+
+[node name="RDC_1er_partie" type="Spatial" parent="Batt B"]
+
+[node name="B116" type="Spatial" parent="Batt B/RDC_1er_partie"]
+
+[node name="mur_1_B116" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 9.25, -88.394, 6, 82.2477 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_1_B116"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_1_B116"]
+shape = SubResource( 8 )
+
+[node name="mur_2_B116" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 14, 0, 0, 0, 2, 0, 0, 0, 1, -73.4, 3, 106.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_2_B116"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_2_B116"]
+shape = SubResource( 8 )
+
+[node name="mur_3_B116" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 4, -88.394, 6, 103.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_3_B116"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_3_B116"]
+shape = SubResource( 8 )
+
+[node name="window2" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 14, 0, 0, 0, 2, 0, 0, 0, 1, -73.358, 7, 106.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/window2"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/window2"]
+shape = SubResource( 8 )
+
+[node name="window" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 11.72, 0, 0, 0, 2, 0, 0, 0, 1, -45.7, 7, 106.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/window"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/window"]
+shape = SubResource( 8 )
+
+[node name="mur_4_B116" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 1, -54, 10, 77 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_4_B116"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_4_B116"]
+shape = SubResource( 8 )
+
+[node name="mur_5_B116" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 4.3, 0, 0, 0, 5, 0, 0, 0, 1, -47.7, 6, 77 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_5_B116"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_5_B116"]
+shape = SubResource( 8 )
+
+[node name="mur_6_B116" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 15.8, -33, 6, 91.8 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_6_B116"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_6_B116"]
+shape = SubResource( 8 )
+
+[node name="mur_7_B116" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 4, -88.4, 10, 95.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_7_B116"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_7_B116"]
+shape = SubResource( 8 )
+
+[node name="mur_8_B116" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, -58.4, 6, 106.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_8_B116"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_8_B116"]
+shape = SubResource( 8 )
+
+[node name="mur_9_B116" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 11.72, 0, 0, 0, 2, 0, 0, 0, 1, -45.7, 3, 106.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_9_B116"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_9_B116"]
+shape = SubResource( 8 )
+
+[node name="mur_10_B116" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 11.72, 0, 0, 0, 1, 0, 0, 0, 1, -45.7, 10, 106.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_10_B116"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_10_B116"]
+shape = SubResource( 8 )
+
+[node name="mur_11_B116" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 14, 0, 0, 0, 1, 0, 0, 0, 1, -73.4, 10, 106.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_11_B116"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_11_B116"]
+shape = SubResource( 8 )
+
+[node name="mur_B117_B116" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 4, 0, 0, 0, 5, 0, 0, 0, 1, -85.4, 6, 72 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_B117_B116"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_B117_B116"]
+shape = SubResource( 8 )
+
+[node name="mur_B117_B116_2" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 10.6, 0, 0, 0, 5, 0, 0, 0, 1, -66.8086, 6, 72 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_B117_B116_2"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_B117_B116_2"]
+shape = SubResource( 8 )
+
+[node name="mur_B117_B116_3" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 1, -79.4, 10, 72 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_B117_B116_3"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_B117_B116_3"]
+shape = SubResource( 8 )
+
+[node name="mur_10_B117" type="StaticBody" parent="Batt B/RDC_1er_partie/B116"]
+transform = Transform( 2.7, 0, 0, 0, 5, 0, 0, 0, 1, -36.7, 6, 77 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B116/mur_10_B117"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B116/mur_10_B117"]
+shape = SubResource( 8 )
+
+[node name="B117" type="Spatial" parent="Batt B/RDC_1er_partie"]
+
+[node name="mur_1_B117" type="StaticBody" parent="Batt B/RDC_1er_partie/B117"]
+transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 16.76, -88.394, 6, 54.2642 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B117/mur_1_B117"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B117/mur_1_B117"]
+shape = SubResource( 8 )
+
+[node name="mur_2_B117" type="StaticBody" parent="Batt B/RDC_1er_partie/B117"]
+transform = Transform( 14, 0, 0, 0, 2, 0, 0, 0, 1, -73.4, 3, 38.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B117/mur_2_B117"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B117/mur_2_B117"]
+shape = SubResource( 8 )
+
+[node name="mur_3_B117" type="StaticBody" parent="Batt B/RDC_1er_partie/B117"]
+transform = Transform( 11.72, 0, 0, 0, 2, 0, 0, 0, 1, -45.7, 3, 38.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B117/mur_3_B117"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B117/mur_3_B117"]
+shape = SubResource( 8 )
+
+[node name="window" type="StaticBody" parent="Batt B/RDC_1er_partie/B117"]
+transform = Transform( 11.72, 0, 0, 0, 2, 0, 0, 0, 1, -45.7, 7, 38.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B117/window"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B117/window"]
+shape = SubResource( 8 )
+
+[node name="window2" type="StaticBody" parent="Batt B/RDC_1er_partie/B117"]
+transform = Transform( 14, 0, 0, 0, 2, 0, 0, 0, 1, -73.3585, 7, 38.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B117/window2"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B117/window2"]
+shape = SubResource( 8 )
+
+[node name="mur_4_B117" type="StaticBody" parent="Batt B/RDC_1er_partie/B117"]
+transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 15.27, -33, 6, 52.75 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B117/mur_4_B117"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B117/mur_4_B117"]
+shape = SubResource( 8 )
+
+[node name="mur_5_B117" type="StaticBody" parent="Batt B/RDC_1er_partie/B117"]
+transform = Transform( 4.3, 0, 0, 0, 5, 0, 0, 0, 1, -47.7, 6, 67 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B117/mur_5_B117"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B117/mur_5_B117"]
+shape = SubResource( 8 )
+
+[node name="mur_6_B117" type="StaticBody" parent="Batt B/RDC_1er_partie/B117"]
+transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, -58.4, 6, 38.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B117/mur_6_B117"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B117/mur_6_B117"]
+shape = SubResource( 8 )
+
+[node name="mur_7_B117" type="StaticBody" parent="Batt B/RDC_1er_partie/B117"]
+transform = Transform( 11.72, 0, 0, 0, 1, 0, 0, 0, 1, -45.7, 10, 38.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B117/mur_7_B117"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B117/mur_7_B117"]
+shape = SubResource( 8 )
+
+[node name="mur_8_B117" type="StaticBody" parent="Batt B/RDC_1er_partie/B117"]
+transform = Transform( 14, 0, 0, 0, 1, 0, 0, 0, 1, -73.4, 10, 38.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B117/mur_8_B117"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B117/mur_8_B117"]
+shape = SubResource( 8 )
+
+[node name="mur_9_B117" type="StaticBody" parent="Batt B/RDC_1er_partie/B117"]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 1, -54, 10, 67 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B117/mur_9_B117"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B117/mur_9_B117"]
+shape = SubResource( 8 )
+
+[node name="mur_10_B117" type="StaticBody" parent="Batt B/RDC_1er_partie/B117"]
+transform = Transform( 2.7, 0, 0, 0, 5, 0, 0, 0, 1, -36.7, 6, 67 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/B117/mur_10_B117"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/B117/mur_10_B117"]
+shape = SubResource( 8 )
+
+[node name="couloir" type="Spatial" parent="Batt B/RDC_1er_partie"]
+
+[node name="mur_couloir" type="StaticBody" parent="Batt B/RDC_1er_partie/couloir"]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 1, -30, 10, 38.5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/couloir/mur_couloir"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/couloir/mur_couloir"]
+shape = SubResource( 8 )
+
+[node name="mur_couloir2" type="StaticBody" parent="Batt B/RDC_1er_partie/couloir"]
+transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 0.7, -51, 6, 75.3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/couloir/mur_couloir2"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/couloir/mur_couloir2"]
+shape = SubResource( 8 )
+
+[node name="mur_couloir3" type="StaticBody" parent="Batt B/RDC_1er_partie/couloir"]
+transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 0.7, -51, 6, 68.7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/couloir/mur_couloir3"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/couloir/mur_couloir3"]
+shape = SubResource( 8 )
+
+[node name="mur_couloir4" type="StaticBody" parent="Batt B/RDC_1er_partie/couloir"]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 1, -41.4, 10, 77 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/couloir/mur_couloir4"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/couloir/mur_couloir4"]
+shape = SubResource( 8 )
+
+[node name="mur_couloir5" type="StaticBody" parent="Batt B/RDC_1er_partie/couloir"]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 1, -41.4, 10, 67 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/couloir/mur_couloir5"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/couloir/mur_couloir5"]
+shape = SubResource( 8 )
+
+[node name="mur du fond" type="StaticBody" parent="Batt B/RDC_1er_partie"]
+transform = Transform( 0.3, 0, 0, 0, 5, 0, 0, 0, 6, -56.3, 6, 72 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Batt B/RDC_1er_partie/mur du fond"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/mur du fond"]
+shape = SubResource( 8 )
+
+[editable path="Player"]
