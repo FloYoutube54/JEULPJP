@@ -1,9 +1,27 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scene/KinematicBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/FPS_COUNTER.gd" type="Script" id=2]
 [ext_resource path="res://textures/beton.jpg" type="Texture" id=3]
 [ext_resource path="res://default_env.tres" type="Environment" id=4]
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.0784314, 0, 0.0784314, 0.54902 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0, 0, 0, 0.313726 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.0784314, 0, 0.0784314, 0.54902 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0, 0, 0, 0.313726 )
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 0.0784314, 0, 0.0784314, 0.54902 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0, 0, 0, 0.313726 )
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -34,26 +52,6 @@ albedo_color = Color( 0.576471, 0.568627, 0.568627, 0.254902 )
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 2 )
 
-[node name="pause_popup" type="Popup" parent="."]
-pause_mode = 2
-margin_left = 484.858
-margin_top = 206.409
-margin_right = 1332.86
-margin_bottom = 578.409
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="_on_pause" type="Button" parent="pause_popup"]
-margin_left = 76.0
-margin_top = 64.0
-margin_right = 688.0
-margin_bottom = 172.0
-text = "bonjour"
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 4 )
-
 [node name="FPS_COUNTER" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -68,14 +66,84 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="pause_popup" type="Popup" parent="."]
+pause_mode = 2
+visible = true
+margin_left = 292.0
+margin_top = 123.0
+margin_right = 1079.0
+margin_bottom = 698.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="pause_popup"]
+margin_left = -1985.0
+margin_top = -1476.0
+margin_right = 3261.0
+margin_bottom = 2311.0
+color = Color( 0, 0, 0, 0.627451 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ignore" type="Button" parent="pause_popup"]
+margin_left = 3753.0
+margin_top = 561.0
+margin_right = 3765.0
+margin_bottom = 581.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="of_pause" type="Button" parent="pause_popup"]
+margin_left = 76.0
+margin_top = 64.0
+margin_right = 688.0
+margin_bottom = 172.0
+custom_styles/focus = SubResource( 13 )
+custom_styles/normal = SubResource( 10 )
+text = "continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option" type="Button" parent="pause_popup"]
+margin_left = 76.0
+margin_top = 231.0
+margin_right = 688.0
+margin_bottom = 339.0
+custom_styles/focus = SubResource( 14 )
+custom_styles/normal = SubResource( 11 )
+text = "Option"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="leave" type="Button" parent="pause_popup"]
+margin_left = 76.0
+margin_top = 399.123
+margin_right = 688.0
+margin_bottom = 507.123
+custom_styles/focus = SubResource( 15 )
+custom_styles/normal = SubResource( 12 )
+text = "QUITTER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 4 )
+
 [node name="soleil" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.642788, 0.766044, 0, -0.766044, -0.642788, 0, 20, 0 )
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1.5, 0, 0, 0, -6.55671e-08, -2, 0, 1.5, -8.74228e-08, -15.3522, 4, 73.3277 )
-walk_speed = 15
-run_speed = 30
+walk_speed = 25
+run_speed = 35
+mouse_sensitivity = 6
 
 [node name="Camera" parent="Player" index="2"]
 transform = Transform( -0.666667, -4.37114e-08, -2.91409e-08, 2.91409e-08, 9.55343e-16, -0.666667, 5.82819e-08, -0.5, 1.27379e-15, 0, 0, -1.37784 )
@@ -493,5 +561,10 @@ material/0 = SubResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Batt B/RDC_1er_partie/mur du fond"]
 shape = SubResource( 8 )
+
+[connection signal="pressed" from="pause_popup/of_pause" to="." method="_on_of_pause_pressed"]
+[connection signal="pressed" from="pause_popup/Option" to="." method="_on_Option_pressed"]
+[connection signal="pressed" from="pause_popup/Option" to="." method="_on_Button_pressed"]
+[connection signal="button_up" from="pause_popup/leave" to="." method="_on_leave_button_up"]
 
 [editable path="Player"]
